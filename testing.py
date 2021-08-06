@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import numpy as np
 import io
 
@@ -81,18 +82,16 @@ df["date"] = (df["year"].astype(str)
 
 print(df)
 
-
-# reduce number of entries to plot and analyze
-# ...
-
+# convert to matplotlib format
+mpl_data = mdates.datestr2num(df["date"])
 
 # plot results
-plt.hist(df["date"], bins=650)
-plt.ylabel("occurences")
-plt.xlabel("dates")
+fig, ax = plt.subplots(1,1)
+ax.hist(mpl_data, bins=500, color='blue')
+ax.xaxis.set_major_locator(mdates.MonthLocator())
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%y'))
 plt.xticks(rotation = 45)
+plt.ylabel("Number of mails per day")
+plt.xlabel("Date")
 plt.title("Sent emails")
 plt.show()
-
-# currently working:
-# shows in histogram how many mails were sent on each day (but only the days where mails where sent; empty days are still missing)
