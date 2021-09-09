@@ -1,4 +1,4 @@
-# template for class that tries to better implement the "testing.py" function
+# class with different functions for analyzing a local e-mail account of Mozilla Thunderbird
 
 import pandas as pd
 import matplotlib.pyplot as plt
